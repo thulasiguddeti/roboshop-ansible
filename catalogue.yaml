@@ -45,9 +45,9 @@
       src: catalogue.service 
       dest: /etc/systemd/system/catalogue.service
 
-  - name: demon reload and start
+  - name: daemon reload and start
     ansible.builtin.systemd_service:
-      demon_reload: true
+      daemon_reload: true
   
   ## let's start after the data is loaded.
   - name: copy mongodb repo
@@ -64,9 +64,9 @@
     ansible.builtin.command: mongo --host mongodb.pragna.site --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
     register: product_count
 
-  - name: print the count
-    ansible.builtin.debug:
-      msg: "{{product_count}}"
+  #- name: print the count
+   # ansible.builtin.debug:
+    #  msg: "{{product_count}}"
 
   - name: load catalogue data 
     ansible.builtin.command: mongo --host mongodb.pragna.site < /app/schema/catalogue.js
