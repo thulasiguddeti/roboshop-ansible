@@ -15,9 +15,6 @@
       name: mysql-community-server
       state: present
 
-  - name: Reload systemd to recognize MySQL service
-    ansible.builtin.command: systemctl daemon-reload
-
   - name: start and enable mysql
     ansible.builtin.service:
       name: mysql
