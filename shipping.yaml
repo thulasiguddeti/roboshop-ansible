@@ -7,7 +7,7 @@
   - name: install maven
     ansible.builtin.dnf:
       name: maven
-      stste: present
+      state: present
   
   - name: create roboshop user
     ansible.builtin.user:
@@ -59,7 +59,7 @@
       state: present
   
   - name: check cities schema exists or not 
-    ansible.builtin.command: mysql -h mysql.pragna.site -uroot -p{{mysql_password}}-sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
+    ansible.builtin.command: mysql -h mysql.pragna.site -uroot -p{{mysql_password}} -sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
     register: schema
 
   - name: print output
